@@ -4,6 +4,7 @@ import { fullProduct, productParams } from '@/app/interface';
 import ImageGallery from '@/components/imageGallery';
 import { Button } from '@/components/ui/button';
 import { Star, TagIcon, Truck } from 'lucide-react';
+import AddToBag from '@/components/addToBag';
 
 
 export const revalidate = 60;
@@ -31,7 +32,8 @@ async function ProductPage({ params: { slug } }: productParams){
       description,
       "slug": slug.current,
       "categoryName": categories->title,
-      "imageUrl": images[0].asset->url
+      "imageUrl": images[0].asset->url,
+      price_id
     }
   `);
   // const productData: fullProduct = await getData(params.slug);
@@ -82,7 +84,14 @@ async function ProductPage({ params: { slug } }: productParams){
               <span className='text-sm'>2-4 Day Shipping</span>
             </div>
             <div className='flex gap-2.5' >
-              <Button > Add To Bag</Button>
+              <AddToBag 
+                key={productData._id}
+                currency="USD" 
+                description={productData.description} 
+                image={productData.images[0]} 
+                name={productData.name} 
+                price={productData.price}
+                price_id={productData.price_id}/>
               <Button variant={"secondary"}> Checkout Now</Button>
             </div>
             <p className='mt-12 text-base text-gray-500 tracking-wide'>

@@ -8,7 +8,7 @@ import { dynamicLinks } from "./dynamicLinks";
 
 
 export default function Navbar() {
-
+  const {handleCartClick} = useShoppingCart();
   return (
     <header className="mb-8 border-b">
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
@@ -20,15 +20,15 @@ export default function Navbar() {
 
         <nav className="hidden gap-12 lg:flex 2xl:ml-16">
           {dynamicLinks("Home", "/")}
-          {dynamicLinks("Men", "/Men")}
-          {dynamicLinks("Women", "/Women")}
+          {dynamicLinks("Mens", "/Mens")}
+          {dynamicLinks("Womens", "/Womens")}
           {dynamicLinks("Teens", "/Teens")}
         </nav>
 
         <div className="flex divide-x border-r sm:border-l">
           <Button
             variant={"outline"}
-            onClick={() => useShoppingCart().handleCartClick()}
+            onClick={() => handleCartClick()}
             className="flex flex-col gap-y-1.5 h-12 w-12 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-none"
           >
             <ShoppingBag />
